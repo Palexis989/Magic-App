@@ -29,7 +29,6 @@ export default function Details() {
     useEffect(() => {
         const doFetch = async () => {
             const res = await getCardDetails(id);
-            console.log(res);
             setDetails(res);
         }
         doFetch();

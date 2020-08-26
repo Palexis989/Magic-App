@@ -1,6 +1,5 @@
 import React from 'react';
 import './additionalStyle.css';
-// import Grid from '@material-ui/core/Grid';
 import { useStyles } from './styles';
 import { Link } from 'react-router-dom';
 // import Image from '../../images/card-back-cover.jpg';
@@ -21,15 +20,6 @@ export default function RandomGallery({ images }) {
                     </Link>)
             }))}
         </div>
-
-        // <Grid container spacing={0}>
-        //     {images.map((img => {
-        //         return (
-        //             <Grid item xs={3} className={classes.container} key={img.data.image_uris.normal}>
-        //                 <img src={`${img.data.image_uris.normal}`} className={classes.img} />
-        //             </Grid>)
-        //     }))}
-        // </Grid>
 
     )
 }

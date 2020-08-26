@@ -42,6 +42,6 @@ export async function getSpecificSet(setCode) {
 
 export async function getCardsFromSet(uriOfSet) {
 
-  return axiosInstance.get(`/sets/${uriOfSet}`);
+  return Axios.get(uriOfSet)
 
 }

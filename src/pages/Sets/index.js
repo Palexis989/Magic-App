@@ -2,34 +2,63 @@ import React, { useEffect, useState } from 'react';
 import { getSpecificSet } from '../../utils/Api';
 import { useParams } from 'react-router-dom';
 import { getCardsFromSet } from '../../utils/Api';
+import { useStyles } from './styles';
+import Grid from '@material-ui/core/Grid';
+import { Link } from 'react-router-dom';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 
 export default function Sets() {
 
+    const classes = useStyles();
+
     const { setCode } = useParams();
 
-    const [expansionsDetails, setExpansionsDetails] = useState();
-    const setUri = expansionsDetails?.data.search_uri;
-    console.log(setUri)
+    const [expansionsDetails, setExpansionsDetails] = useState("");
+    const [expansionCards, setExpansionCards] = useState("");
+
 
     useEffect(() => {
         const doFetch = async () => {
             const res = await getSpecificSet(setCode);
-            console.log(res);
             setExpansionsDetails(res);
         }
         doFetch();
-    }, [setCode])  //callback
+    }, [])  //callback
+
+    useEffect(() => {
+        if (expansionsDetails) {
+            const doFetch = async () => {
+                const res = await getCardsFromSet(expansionsDetails.data.search_uri);
+                setExpansionCards(res?.data.data);
+            }
+            doFetch();
+        }
+    }, [expansionsDetails])  //callback
+
+    console.log(expansionCards);
 
     return (
-        <>
-            {/* {.map((img => {
-                return (
-                    <Link to={`/details/${img.data.id}`}>
-                        <img src={img.data.image_uris ? `${img.data.image_uris.normal}` : `${img.data.card_faces[0].image_uris.normal}`}
-                            alt={"Not found"} key={`${img.data.id}`}
-                            className={classes.img} />
-                    </Link>)
-            }))} */}
-        </>
+
+        <div className={classes.wrapper}>
+            {/* CHECK THE LOADER!!! :( :( :( :( */}
+            {expansionCards === null ? (
+                <div className={classes.root}>
+                    <CircularProgress size={150} />
+                </div>) :
+                (<Grid container spacing={0}>
+                    {expansionCards && expansionCards.map((img => {
+                        return (
+                            <Grid item xs={6} sm={4} md={3} className={classes.container} key={img?.image_uris?.normal}>
+                                <Link to={`/details/${img.id}`}>
+                                    <img src={`${img.image_uris?.normal}`} className={classes.img} />
+                                </Link>
+                            </Grid>)
+                    }))}
+                </Grid>)
+            }
+
+        </div>
+
     )
 }
