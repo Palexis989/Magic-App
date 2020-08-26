@@ -33,3 +33,15 @@ export async function getAllPrints(allPrints) {
   return fetch(allPrints)
     .then(response => response.json())
 }
+
+export async function getSpecificSet(setCode) {
+
+  return axiosInstance.get(`/sets/${setCode}`);
+
+}
+
+export async function getCardsFromSet(uriOfSet) {
+
+  return axiosInstance.get(`/sets/${uriOfSet}`);
+
+}

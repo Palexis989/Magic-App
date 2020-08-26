@@ -1,25 +1,12 @@
 import React, { useEffect, useState } from 'react';
 
 import { useStyles } from './styles';
-// import { getAllPrints } from '../../utils/Api';
 import { Link, useParams } from 'react-router-dom';
 import { Grid } from '@material-ui/core';
 
 
-
 export default function DetailsSetTable({ details }) {
     const classes = useStyles();
-
-    const [expansionsDetails, setExpansionDetails] = useState();
-
-    useEffect(() => {
-        const doFetch = async () => {
-            const res = await console.log(expansionsDetails);
-            console.log(res);
-            setExpansionDetails(res);
-        }
-        doFetch();
-    }, [expansionsDetails])  //callback
 
     return (
         <>

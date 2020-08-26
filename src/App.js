@@ -13,7 +13,7 @@ function App() {
       <Router>
         <CardSearch />
         <Switch>
-          <Route path="/sets/:code">
+          <Route path="/sets/:setCode">
             <Sets />
           </Route>
           <Route path="/details/:id">
