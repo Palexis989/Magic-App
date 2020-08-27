@@ -33,9 +33,11 @@ export default function Homepage() {
     return (
         <>
             <div className={classes.wrapper}>
-                <Button variant="contained" color="primary" >
-                    All Sets
-                </Button>
+                <Link to={"/allsets"}>
+                    <Button variant="contained" color="primary" >
+                        All Sets
+                    </Button>
+                </Link>
                 <Link to={`/details/${randomForButton && randomForButton.data.id}`}>
                     <Button variant="contained" color="primary" >
                         Random Card

@@ -45,3 +45,9 @@ export async function getCardsFromSet(uriOfSet) {
   return Axios.get(uriOfSet)
 
 }
+
+export async function getAllSets() {
+
+  return axiosInstance.get('/sets')
+
+}

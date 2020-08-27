@@ -31,7 +31,7 @@ export default function DetailsPrintsTable({ allPrints, details }) {
         <>
 
             <TableContainer className={classes.denseTableContainer} component={Paper}>
-                <Table stickyHeader className={classes.table}  aria-label="sticky table">
+                <Table stickyHeader className={classes.table} aria-label="sticky table">
                     <TableHead >
                         <TableRow className={classes.tableHead}>
                             <TableCell className={classes.headTableCell}>Prints</TableCell>
@@ -48,17 +48,20 @@ export default function DetailsPrintsTable({ allPrints, details }) {
                                         {print.set_name}
                                     </Link>
                                 </TableCell>
-                                <TableCell align="right">{print.prices.usd ? print.prices.usd : "-"}</TableCell>
-                                <TableCell align="right">{print.prices.eur ? print.prices.eur : "-"}</TableCell>
-                                <TableCell align="right">{print.prices.tix ? print.prices.tix : "-"}</TableCell>
+                                <TableCell align="right">{print.prices.usd ? print.prices.usd : "-"}
+                                    <a target="_blank" href={print.purchase_uris?.tcgplayer}> Buy</a>
+                                </TableCell>
+                                <TableCell align="right">{print.prices.eur ? print.prices.eur : "-"}
+                                    <a target="_blank" href={print.purchase_uris?.cardmarket}> Buy</a>
+                                </TableCell>
+                                <TableCell align="right">{print.prices.tix ? print.prices.tix : "-"}
+                                    <a target="_blank" href={print.purchase_uris?.cardhoarder}> Buy</a>
+                                </TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
                 </Table>
             </TableContainer>
-
-
-
 
         </>
     );

@@ -5,6 +5,7 @@ import Details from './pages/Details/index';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import CardSearch from './components/CardSearch';
 import Sets from './pages/Sets/index'
+import AllSets from './pages/AllSets';
 
 function App() {
   return (
@@ -13,6 +14,9 @@ function App() {
       <Router>
         <CardSearch />
         <Switch>
+          <Route path="/allsets">
+            <AllSets />
+          </Route>
           <Route path="/sets/:setCode">
             <Sets />
           </Route>
