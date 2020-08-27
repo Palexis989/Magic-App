@@ -9,10 +9,12 @@ export const useStyles = makeStyles((theme) => ({
         width: "100%",
         backgroundImage: `url(${Image})`,
         backgroundColor: "#4080bf",
+        marginLeft: "4px",
+        marginBottom: "69px"
         // scrollSnapType: "y mandatory" //scrolling prop
     },
     img: {
-        width: "238px", height: "334px", transition: "244ms all", margin: "1px",
+        width: "238px", height: "334px", transition: "244ms all", margin: "2px",
         backgroundImage: `url(${Image})`, borderRadius: "15px", backgroundColor: "#4080bf",
         // scrollSnapAlign: "start", //scrolling prop
         "&:hover": {
