@@ -46,6 +46,16 @@ export const useStyles = makeStyles((theme) => ({
     inputRoot: {
         color: 'white',
     },
+    dropdown: {
+        position: 'absolute',
+        top: 28,
+        right: 0,
+        left: 0,
+        zIndex: 1,
+        border: '1px solid',
+        padding: theme.spacing(1),
+        backgroundColor: theme.palette.background.paper,
+    },
     inputInput: {
         fontWeight: "bold",
         padding: theme.spacing(1, 1, 1, 0),

@@ -11,25 +11,29 @@ import { useStyles } from './styles';
 import { getFuzzyNameCard, } from '../../utils/Api';
 import { Link, useHistory, } from 'react-router-dom';
 import ErrorDialog from '../../components/ErrorDialog';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import Button from '@material-ui/core/Button';
+import { getRandomCards } from '../../utils/Api';
+
 
 export default function CardSearch() {
 
-    // search.onclick = function (event) {
-    //     event.preventDefault();
-    //     const name = search.value;
-
-    //     getFuzzyNameCard(name);
-    //     console.log(getFuzzyNameCard(name));
-
-    //     search.value = "";
-    // }
 
     const history = useHistory();
 
     const [modalError, setModalError] = useState(false);
     const [errorText, setErrorText] = useState("");
     const [errorTitle, setErrorTitle] = useState("");
+    const [open, setOpen] = React.useState(false);
 
+
+    const handleClick = () => {
+        setOpen((prev) => !prev);
+    };
+
+    const handleClickAway = () => {
+        setOpen(false);
+    };
 
     const handleCloseModal = () => {
         setModalError(false);
@@ -62,6 +66,12 @@ export default function CardSearch() {
         }
     }
 
+    const [randomForButton, setRandomForButton] = useState("")
+    const getRandomForButton = async () => {
+        const resp = await getRandomCards();
+        setRandomForButton(resp)
+    }
+    getRandomForButton();
 
     const classes = useStyles();
 
@@ -72,14 +82,33 @@ export default function CardSearch() {
         <div className={classes.searchbarContainer}>
             <AppBar position="static">
                 <Toolbar>
-                    <IconButton
-                        edge="start"
-                        className={classes.menuButton}
-                        color="inherit"
-                        aria-label="open drawer"
-                    >
-                        <MenuIcon />
-                    </IconButton>
+                    <ClickAwayListener onClickAway={handleClickAway}>
+                        <div>
+                            <IconButton
+                                edge="start"
+                                className={classes.menuButton}
+                                color="inherit"
+                                aria-label="open drawer"
+                                onClick={handleClick}
+                            >
+                                <MenuIcon />
+                            </IconButton>
+                            {open ? (
+                                <div className={classes.dropdown}>
+                                    <Link to={"/allsets"}>
+                                        <Button variant="contained" color="primary" >
+                                            All Sets
+                                        </Button>
+                                    </Link>
+                                    <Link to={`/details/${randomForButton && randomForButton.data.id}`}>
+                                        <Button variant="contained" color="primary" >
+                                            Random Card
+                                        </Button>
+                                    </Link>
+                                </div>
+                            ) : null}
+                        </div>
+                    </ClickAwayListener>
                     <Typography className={classes.title} variant="h6" noWrap>
                         {/* Magic The Gathering */}
 
@@ -93,7 +122,6 @@ export default function CardSearch() {
                             // onClick={() => history.back()}
                             />
                         </Link>
-
 
                     </Typography>
                     {/* <IconButton onClick={() => console.log('Press Check')}>
@@ -124,6 +152,6 @@ export default function CardSearch() {
                 errorText={errorText}
                 errorTitle={errorTitle}
             />
-        </div>
+        </div >
     )
 }
