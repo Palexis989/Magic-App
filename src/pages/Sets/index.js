@@ -51,7 +51,9 @@ export default function Sets() {
                         return (
                             <Grid item xs={6} sm={4} md={3} className={classes.container} key={img?.image_uris?.normal}>
                                 <Link to={`/details/${img.id}`}>
-                                    <img src={`${img.image_uris?.normal}`} className={classes.img} />
+                                    <img src={img.image_uris ? `${img.image_uris.normal}` : `${img.card_faces[0].image_uris.normal}`}
+                                        alt={"Not found"}
+                                        className={classes.img} />
                                 </Link>
                             </Grid>)
                     }))}

@@ -4,8 +4,6 @@ import IconButton from '@material-ui/core/IconButton';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import MenuIcon from '@material-ui/icons/Menu';
-// import SearchIcon from '@material-ui/icons/Search';
-import InputBase from '@material-ui/core/InputBase';
 import { useStyles } from './styles';
 // import Image from '../../images/magic-logo.jpg';
 import { getFuzzyNameCard, } from '../../utils/Api';
@@ -14,6 +12,9 @@ import ErrorDialog from '../../components/ErrorDialog';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Button from '@material-ui/core/Button';
 import { getRandomCards } from '../../utils/Api';
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import Axios from 'axios';
 
 
 export default function CardSearch() {
@@ -26,6 +27,30 @@ export default function CardSearch() {
     const [errorTitle, setErrorTitle] = useState("");
     const [open, setOpen] = React.useState(false);
 
+    const [autocompleteOptions, setAutocompleteOptions] = useState([]);
+
+
+    const handleAutocomplete = () => {
+        Axios.get(`https://api.scryfall.com/cards/autocomplete?q=${value}`)
+            .then(response => setAutocompleteOptions(response.data.data))
+    }
+
+    const doFetchAutocomplete = async (value) => {
+        let res = null;
+        try {
+            res = await getFuzzyNameCard(value);
+            console.log(res)
+            history.push(`/details/${res.data.id}`)
+            window.location.reload();
+
+        } catch (error) {
+            console.log(error.response.data.details)
+            console.log(error.response.status)
+            setErrorTitle(error.response.status)
+            setErrorText(error.response.data.details)
+            handleOpenModal();
+        }
+    }
 
     const handleClick = () => {
         setOpen((prev) => !prev);
@@ -59,7 +84,6 @@ export default function CardSearch() {
                     setErrorTitle(error.response.status)
                     setErrorText(error.response.data.details)
                     handleOpenModal();
-
                 }
             }
             doFetch();
@@ -124,25 +148,40 @@ export default function CardSearch() {
                         </Link>
 
                     </Typography>
-                    {/* <IconButton onClick={() => console.log('Press Check')}>
-                            <SearchIcon />
-                        </IconButton> */}
                     <div className={classes.search}>
-                        {/* <div className={classes.searchIcon} >
-                            </div> */}
-                        <InputBase
-                            onKeyPress={handleSearch}
-                            className={classes.input}
-                            onChange={event => {    //adding the onChange event
-                                setValue(event.target.value)
+                        <Autocomplete
+                            freeSolo
+                            disableClearable
+                            onChange={(event, value, reason) => {
+
+                                doFetchAutocomplete(value)
+
                             }}
-                            placeholder="Search a card"
-                            classes={{
-                                root: classes.inputRoot,
-                                input: classes.inputInput,
-                            }}
-                            inputProps={{ 'aria-label': 'search' }}
+                            options={autocompleteOptions.map((option) => (
+
+                                option
+
+                            ))}
+                            renderInput={(params) => (
+                                <TextField
+                                    {...params}
+                                    onKeyUp={handleAutocomplete}
+                                    onKeyPress={handleSearch}
+                                    className={classes.input}
+                                    onChange={event => {    //adding the onChange event
+                                        setValue(event.target.value)
+                                    }}
+                                    placeholder="Search a card"
+                                    InputProps={{ ...params.InputProps, type: 'search' }}
+                                // // classes={{
+                                // //     root: classes.inputRoot,
+                                // //     input: classes.inputInput,
+                                // }}
+
+                                />
+                            )}
                         />
+
                     </div>
                 </Toolbar>
             </AppBar>

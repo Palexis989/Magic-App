@@ -1,6 +1,6 @@
 import Axios from 'axios';
 
-const axiosInstance = Axios.create({
+export const axiosInstance = Axios.create({
 
   baseURL: 'https://api.scryfall.com',
 
@@ -49,5 +49,11 @@ export async function getCardsFromSet(uriOfSet) {
 export async function getAllSets() {
 
   return axiosInstance.get('/sets')
+
+}
+
+export async function getAutoComplete(partialName) {
+
+  
 
 }
