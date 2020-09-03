@@ -15,6 +15,7 @@ import { getRandomCards } from '../../utils/Api';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Axios from 'axios';
+import _ from "lodash";
 
 
 export default function CardSearch() {
@@ -34,6 +35,8 @@ export default function CardSearch() {
         Axios.get(`https://api.scryfall.com/cards/autocomplete?q=${value}`)
             .then(response => setAutocompleteOptions(response.data.data))
     }
+
+    const debounceAutocomplete = _.debounce(handleAutocomplete, 369);
 
     const doFetchAutocomplete = async (value) => {
         let res = null;
@@ -165,7 +168,7 @@ export default function CardSearch() {
                             renderInput={(params) => (
                                 <TextField
                                     {...params}
-                                    onKeyUp={handleAutocomplete}
+                                    onKeyUp={debounceAutocomplete}
                                     onKeyPress={handleSearch}
                                     className={classes.input}
                                     onChange={event => {    //adding the onChange event

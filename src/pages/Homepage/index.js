@@ -1,28 +1,41 @@
 import React, { useEffect, useState } from 'react';
-import { getRandomCards } from '../../utils/Api';
+import { getRandomCards, getCardsFromSet } from '../../utils/Api';
 import { useStyles } from './styles';
 import RandomGallery from '../../components/RandomGallery';
 import Button from '@material-ui/core/Button';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 
 export default function Homepage() {
 
     const classes = useStyles();
 
-    const [random, setRandom] = useState("")
-    useEffect(() => {
-        const getRandoms = async () => {
-            const randomImages = [getRandomCards(), getRandomCards(), getRandomCards(), getRandomCards(), getRandomCards(), getRandomCards(), getRandomCards(), getRandomCards()];
-            const res = await Promise.all(randomImages);
-            console.log(res)
-            setRandom(res);
-        }
-        getRandoms();
+    // const [random, setRandom] = useState("")
 
-    }, [])  //callback
+    const [introCards, setIntroCards] = useState([])
+
+    useEffect(() => {
+        const getIntro = async () => {                 //Rise of the Eldrazi uri
+            const res = await getCardsFromSet("https://api.scryfall.com/cards/search?order=set&q=e%3Aroe&unique=prints");
+            console.log(res.data.data)
+            setIntroCards(res.data.data);
+        }
+        getIntro();
+
+    }, [])
+
+    // useEffect(() => {
+    //     const getRandoms = async () => {
+    //         const randomImages = [getRandomCards(), getRandomCards(), getRandomCards(), getRandomCards()];
+    //         const res = await Promise.all(randomImages);
+    //         setRandom(res);
+    //     }
+    //     getRandoms();
+
+    // }, [])  //callback
 
     const [randomForButton, setRandomForButton] = useState("")
+
     const getRandomForButton = async () => {
         const resp = await getRandomCards();
         setRandomForButton(resp)
@@ -38,7 +51,7 @@ export default function Homepage() {
                         All Sets
                     </Button>
                 </Link>
-                <Link to={`/details/${randomForButton && randomForButton.data.id}`}>
+                <Link replace={true} to={`/details/${randomForButton && randomForButton.data.id}`}>
                     <Button variant="contained" color="primary" >
                         Random Card
                     </Button>
@@ -46,7 +59,7 @@ export default function Homepage() {
             </div>
 
             <div className={classes.root}>
-                {random ? (<RandomGallery images={random} />) : null}
+                {introCards ? (<RandomGallery images={introCards} />) : null}
             </div>
         </>
     )

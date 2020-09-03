@@ -13,9 +13,9 @@ export default function RandomGallery({ images }) {
         <div className={classes.container}>
             {images.map((img => {
                 return (
-                    <Link to={`/details/${img.data.id}`}>
-                        <img src={img.data.image_uris ? `${img.data.image_uris.normal}` : `${img.data.card_faces[0].image_uris.normal}`}
-                            alt={"Not found"} key={`${img.data.id}`}
+                    <Link to={`/details/${img.id}`}>
+                        <img src={img.image_uris ? `${img.image_uris.normal}` : `${img.card_faces[0].image_uris.normal}`}
+                            alt={"Not found"} key={`${img.id}`}
                             className={classes.img} />
                     </Link>)
             }))}
