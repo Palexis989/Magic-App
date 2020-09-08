@@ -14,8 +14,8 @@ export default function Sets() {
 
     const { setCode } = useParams();
 
-    const [expansionsDetails, setExpansionsDetails] = useState("");
-    const [expansionCards, setExpansionCards] = useState("");
+    const [expansionsDetails, setExpansionsDetails] = useState(null);
+    const [expansionCards, setExpansionCards] = useState(null);
 
 
     useEffect(() => {
@@ -34,7 +34,7 @@ export default function Sets() {
             }
             doFetch();
         }
-    }, [expansionsDetails])  //callback
+    }, [])  //callback
 
     console.log(expansionCards);
 

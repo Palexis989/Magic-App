@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import AppBar from '@material-ui/core/AppBar';
@@ -27,6 +27,7 @@ export default function CardSearch() {
     const [errorText, setErrorText] = useState("");
     const [errorTitle, setErrorTitle] = useState("");
     const [open, setOpen] = React.useState(false);
+    const [randomForButton, setRandomForButton] = useState(null)
 
     const [autocompleteOptions, setAutocompleteOptions] = useState([]);
 
@@ -54,6 +55,13 @@ export default function CardSearch() {
             handleOpenModal();
         }
     }
+
+    const getRandomForButton = async () => {
+
+        const resp = await getRandomCards();
+        setRandomForButton(resp.data.id)
+    }
+
 
     const handleClick = () => {
         setOpen((prev) => !prev);
@@ -93,13 +101,6 @@ export default function CardSearch() {
         }
     }
 
-    const [randomForButton, setRandomForButton] = useState("")
-    const getRandomForButton = async () => {
-        const resp = await getRandomCards();
-        setRandomForButton(resp)
-    }
-    getRandomForButton();
-
     const classes = useStyles();
 
     const [value, setValue] = React.useState();
@@ -127,8 +128,10 @@ export default function CardSearch() {
                                             All Sets
                                         </Button>
                                     </Link>
-                                    <Link to={`/details/${randomForButton && randomForButton.data.id}`}>
-                                        <Button variant="contained" color="primary" >
+                                    <Link to={`/details/${randomForButton}`}>
+                                        <Button
+                                            onClick={getRandomForButton()}
+                                            variant="contained" color="primary" >
                                             Random Card
                                         </Button>
                                     </Link>
