@@ -130,7 +130,7 @@ export default function CardSearch() {
                                     </Link>
                                     <Link to={`/details/${randomForButton}`}>
                                         <Button
-                                            onClick={getRandomForButton()}
+                                            onClick={() => getRandomForButton()}
                                             variant="contained" color="primary" >
                                             Random Card
                                         </Button>
