@@ -48,13 +48,15 @@ export const useStyles = makeStyles((theme) => ({
     },
     dropdown: {
         position: 'absolute',
-        top: 28,
+        top: 62,
         right: 0,
         left: 0,
         zIndex: 1,
         border: '1px solid',
         padding: theme.spacing(1),
-        backgroundColor: theme.palette.background.paper,
+        backgroundColor: "transparent",
+        display: "flex",
+        justifyContent: "center"
     },
     inputInput: {
         fontWeight: "bold",
@@ -69,5 +71,10 @@ export const useStyles = makeStyles((theme) => ({
                 width: '20ch',
             },
         },
+    },
+    dropButton: {
+        backgroundColor: "white",
+        color: "blue",
+        margin: "2px"
     }
 }));

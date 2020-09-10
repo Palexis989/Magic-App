@@ -5,7 +5,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import MenuIcon from '@material-ui/icons/Menu';
 import { useStyles } from './styles';
-// import Image from '../../images/magic-logo.jpg';
+import Image from '../../images/magic-logo.jpg';
 import { getFuzzyNameCard, } from '../../utils/Api';
 import { Link, useHistory, } from 'react-router-dom';
 import ErrorDialog from '../../components/ErrorDialog';
@@ -56,12 +56,18 @@ export default function CardSearch() {
         }
     }
 
-    const getRandomForButton = async () => {
+    useEffect(() => {
+        const getRandomForButton = async () => {
+            const resp = await getRandomCards();
+            setRandomForButton(resp.data.id)
+        }
+        getRandomForButton()
+    }, [])
 
+    const getRandomForButton = async () => {
         const resp = await getRandomCards();
         setRandomForButton(resp.data.id)
     }
-
 
     const handleClick = () => {
         setOpen((prev) => !prev);
@@ -124,12 +130,13 @@ export default function CardSearch() {
                             {open ? (
                                 <div className={classes.dropdown}>
                                     <Link to={"/allsets"}>
-                                        <Button variant="contained" color="primary" >
+                                        <Button className={classes.dropButton} variant="contained" color="primary" >
                                             All Sets
                                         </Button>
                                     </Link>
                                     <Link to={`/details/${randomForButton}`}>
                                         <Button
+                                            className={classes.dropButton}
                                             onClick={() => getRandomForButton()}
                                             variant="contained" color="primary" >
                                             Random Card

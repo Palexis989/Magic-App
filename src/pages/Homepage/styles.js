@@ -8,6 +8,9 @@ export const useStyles = makeStyles((theme) => ({
         display: "flex",
         justifyContent: "center",
         backgroundColor: "#4080bf",
-        backgroundImage: `url(${Image})`
+        backgroundImage: `url(${Image})`,
+    },
+    homeButton: {
+        paddingLeft: "4px"
     }
 }));

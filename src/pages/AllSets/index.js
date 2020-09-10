@@ -29,11 +29,7 @@ export default function AllSets() {
 
 
     return (
-        <>
-            <div>
-                {/* <p>Aprilia Rules!!! <3</p> */}
-            </div>
-
+        <div className={classes.root}>
             <TableContainer component={Paper}>
                 <Table className={classes.table} aria-label="simple table">
                     <TableHead>
@@ -60,6 +56,6 @@ export default function AllSets() {
                     </TableBody>
                 </Table>
             </TableContainer>
-        </>
+        </div>
     )
 }

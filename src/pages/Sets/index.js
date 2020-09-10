@@ -34,7 +34,7 @@ export default function Sets() {
             }
             doFetch();
         }
-    }, [])  //callback
+    }, [expansionsDetails])  //callback
 
     console.log(expansionCards);
 
