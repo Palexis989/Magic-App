@@ -33,5 +33,5 @@ export const useStyles = makeStyles((theme) => ({
     root: {
         backgroundImage: `url(${Image})`,
         backgroundColor: "#4080bf",
-    }
+    },
 }))
