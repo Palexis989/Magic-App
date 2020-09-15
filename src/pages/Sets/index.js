@@ -82,13 +82,13 @@ export default function Sets() {
     return (
 
         <div className={classes.wrapper}>
-            {/* CHECK THE LOADER!!! :( :( :( :( */}
+
             {expansionCards === null ? (
-                <div className={classes.root}>
+                <div className={classes.loaderRoot}>
                     <CircularProgress size={150} />
                 </div>) :
                 (<InfiniteScroll
-                    dataLength={expansionCards && expansionCards.total_cards} //This is important field to render the next data
+                    dataLength={expansionCards && expansionCards.total_cards} 
                     next={pullTrigger}
                     hasMore={expansionCards && expansionCards.has_more}
                     loader={<h4>Loading...</h4>}

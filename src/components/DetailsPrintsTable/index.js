@@ -10,6 +10,7 @@ import { useStyles } from './styles';
 import { getAllPrints } from '../../utils/Api';
 import { Link, useParams } from 'react-router-dom';
 // import { Grid } from '@material-ui/core';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 
 export default function DetailsPrintsTable({ allPrints, details }) {
@@ -48,14 +49,17 @@ export default function DetailsPrintsTable({ allPrints, details }) {
                                         {print.set_name}
                                     </Link>
                                 </TableCell>
-                                <TableCell align="right">{print.prices.usd ? print.prices.usd : "-"}
-                                    <a target="_blank" href={print.purchase_uris?.tcgplayer}> Buy</a>
+                                <TableCell align="right">{print.prices.usd ? print.prices.usd : null}
+                                    <a className={classes.anchors}
+                                        target="_blank" href={print.purchase_uris?.tcgplayer}> <ShoppingCartIcon /> </a>
                                 </TableCell>
-                                <TableCell align="right">{print.prices.eur ? print.prices.eur : "-"}
-                                    <a target="_blank" href={print.purchase_uris?.cardmarket}> Buy</a>
+                                <TableCell align="right">{print.prices.eur ? print.prices.eur : null}
+                                    <a className={classes.anchors}
+                                        target="_blank" href={print.purchase_uris?.cardmarket}> <ShoppingCartIcon /></a>
                                 </TableCell>
-                                <TableCell align="right">{print.prices.tix ? print.prices.tix : "-"}
-                                    <a target="_blank" href={print.purchase_uris?.cardhoarder}> Buy</a>
+                                <TableCell align="right">{print.prices.tix ? print.prices.tix : null}
+                                    <a className={classes.anchors}
+                                        target="_blank" href={print.purchase_uris?.cardhoarder}> <ShoppingCartIcon /></a>
                                 </TableCell>
                             </TableRow>
                         ))}

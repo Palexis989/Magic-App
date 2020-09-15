@@ -4,7 +4,7 @@ import Image from '../../images/minimal-blur.jpg';
 export const useStyles = makeStyles((theme) => ({
     img: {
         width: "238px", height: "334px", transition: "244ms all", margin: "1px",
-        backgroundImage: `url(${Image})`, borderRadius: "15px", backgroundColor: "#4080bf",
+        borderRadius: "15px",
         // scrollSnapAlign: "start", //scrolling prop
         "&:hover": {
             marginLeft: "0 11px",
@@ -15,8 +15,6 @@ export const useStyles = makeStyles((theme) => ({
 
     container: {
         display: "flex",
-        backgroundImage: `url(${Image})`,
-        backgroundColor: "#4080bf",
         width: "100%",
         justifyContent: "space-evenly"
     },
@@ -24,6 +22,10 @@ export const useStyles = makeStyles((theme) => ({
     wrapper: {
         backgroundImage: `url(${Image})`,
         backgroundColor: "#4080bf",
+        width: "100%",
+        height: "100%",
+        backgroundSize: "cover",
+        backgroundRepeat: "repeat"
     },
 
     loader: {
@@ -34,4 +36,7 @@ export const useStyles = makeStyles((theme) => ({
         backgroundImage: `url(${Image})`,
         backgroundColor: "#4080bf",
     },
+
+    loaderRoot: { height: "100vh", display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: "#4080bf", backgroundImage: `url(${Image})` },
+
 }))

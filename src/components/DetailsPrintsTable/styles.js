@@ -40,4 +40,7 @@ export const useStyles = makeStyles({
         backgroundColor: "#4080bf",
         width: "100px",
     },
+    anchors: {
+        textDecoration: "none"
+    }
 });

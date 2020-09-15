@@ -9,6 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { useStyles } from './styles';
 import { Link } from 'react-router-dom';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 export default function AllSets() {
@@ -29,33 +30,40 @@ export default function AllSets() {
 
 
     return (
-        <div className={classes.root}>
-            <TableContainer component={Paper}>
-                <Table className={classes.table} aria-label="simple table">
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Icon</TableCell>
-                            <TableCell align="right">Name</TableCell>
-                            <TableCell align="right">Cards</TableCell>
-                            <TableCell align="right">Date</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {allSets && allSets?.map((row) => (
+        <>
+            {allSets === null ? (
+                <div className={classes.loaderRoot}>
+                    <CircularProgress size={150} />
+                </div>) :
+                (<div className={classes.root}>
+                    <TableContainer component={Paper}>
+                        <Table className={classes.table} aria-label="simple table">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell>Icon</TableCell>
+                                    <TableCell align="right">Name</TableCell>
+                                    <TableCell align="right">Cards</TableCell>
+                                    <TableCell align="right">Date</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {allSets && allSets?.map((row) => (
 
-                            <TableRow key={row.id}>
-                                <Link to={`/sets/${row.code}`}>
-                                    <TableCell align="right">Icon</TableCell>
-                                    <TableCell align="right">{row.name}</TableCell>
-                                    <TableCell align="right">{row.card_count}</TableCell>
-                                    <TableCell align="right">{row.released_at}</TableCell>
-                                </Link>
-                            </TableRow>
+                                    <TableRow key={row.id}>
+                                        <Link to={`/sets/${row.code}`}>
+                                            <TableCell align="right">Icon</TableCell>
+                                            <TableCell align="right">{row.name}</TableCell>
+                                            <TableCell align="right">{row.card_count}</TableCell>
+                                            <TableCell align="right">{row.released_at}</TableCell>
+                                        </Link>
+                                    </TableRow>
 
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
-        </div>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                </div>
+                )}
+        </>
     )
 }

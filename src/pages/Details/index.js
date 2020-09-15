@@ -13,6 +13,7 @@ import DetailsSetTable from '../../components/DetailsSetTable';
 import CircularProgress from '@material-ui/core/CircularProgress';
 // import Image from '../../images/card-back-cover.jpg';
 import { Button } from '@material-ui/core';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 
 export default function Details() {

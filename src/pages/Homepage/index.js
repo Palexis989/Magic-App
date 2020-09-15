@@ -127,7 +127,9 @@ export default function Homepage() {
                         <RandomGallery images={arrByEldrazi} />
                     </div>
                 </>)
-                : <CircularProgress size={150} />}
+                : <div className={classes.loaderRoot}>
+                    <CircularProgress size={150} />
+                </div>}
 
         </>
     )

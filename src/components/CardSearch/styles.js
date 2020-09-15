@@ -76,5 +76,9 @@ export const useStyles = makeStyles((theme) => ({
         backgroundColor: "white",
         color: "blue",
         margin: "2px"
-    }
+    },
+    input: {
+        color: "white",
+        paddingLeft: "43px"
+    },
 }));

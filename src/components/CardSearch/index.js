@@ -93,7 +93,7 @@ export default function CardSearch() {
                     res = await getFuzzyNameCard(value);
                     console.log(res)
                     history.push(`/details/${res.data.id}`)
-                    window.location.reload();
+                    // window.location.reload();
 
                 } catch (error) {
                     console.log(error.response.data.details)
@@ -180,16 +180,11 @@ export default function CardSearch() {
                                     {...params}
                                     onKeyUp={debounceAutocomplete}
                                     onKeyPress={handleSearch}
-                                    className={classes.input}
                                     onChange={event => {    //adding the onChange event
                                         setValue(event.target.value)
                                     }}
                                     placeholder="Search a card"
-                                    InputProps={{ ...params.InputProps, type: 'search' }}
-                                // // classes={{
-                                // //     root: classes.inputRoot,
-                                // //     input: classes.inputInput,
-                                // }}
+                                    InputProps={{ ...params.InputProps, type: 'search', className: classes.input }}
 
                                 />
                             )}
