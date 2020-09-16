@@ -48,15 +48,18 @@ export const useStyles = makeStyles((theme) => ({
     },
     dropdown: {
         position: 'absolute',
-        top: 62,
+        top: 3,
         right: 0,
-        left: 0,
+        left: 404,
         zIndex: 1,
         border: '1px solid',
         padding: theme.spacing(1),
         backgroundColor: "transparent",
         display: "flex",
-        justifyContent: "center"
+        justifyContent: "center",
+        maxWidth: "606px",
+        maxHeight: "69px",
+        borderRadius: "6px"
     },
     inputInput: {
         fontWeight: "bold",

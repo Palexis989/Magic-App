@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import CardSearch from './components/CardSearch';
 import Sets from './pages/Sets/index'
 import AllSets from './pages/AllSets';
+import DeckBuilder from './pages/DeckBuilder';
 
 function App() {
   return (
@@ -14,6 +15,9 @@ function App() {
       <Router>
         <CardSearch />
         <Switch>
+          <Route path="/deckbuilder">
+            <DeckBuilder />
+          </Route>
           <Route path="/allsets">
             <AllSets />
           </Route>

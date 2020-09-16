@@ -23,18 +23,14 @@ export const useStyles = makeStyles((theme) => ({
         backgroundImage: `url(${Image})`,
         backgroundColor: "#4080bf",
         width: "100%",
-        height: "100%",
         backgroundSize: "cover",
-        backgroundRepeat: "repeat"
+        backgroundRepeat: "repeat",
+        height: "100%",
+
     },
 
     loader: {
         width: "200px",
-    },
-
-    root: {
-        backgroundImage: `url(${Image})`,
-        backgroundColor: "#4080bf",
     },
 
     loaderRoot: { height: "100vh", display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: "#4080bf", backgroundImage: `url(${Image})` },

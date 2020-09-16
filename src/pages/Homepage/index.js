@@ -8,7 +8,6 @@ import _ from "lodash";
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 
-
 export default function Homepage() {
 
     const classes = useStyles();
@@ -30,7 +29,6 @@ export default function Homepage() {
 
         }
         getIntro();
-
 
     }, [])
 
@@ -81,7 +79,6 @@ export default function Homepage() {
     }, [slice1, slice2])
 
 
-
     useEffect(() => {
         const getRandomForButton = async () => {
 
@@ -100,26 +97,18 @@ export default function Homepage() {
 
     }
 
-    console.log(arrByEldrazi)
-    console.log(arrByEldrazi?.length)
-
     return (
         <>
             {arrByEldrazi && arrByEldrazi.length === 19 ?
                 (<>
                     <div className={classes.wrapper}>
-                        <Link to={"/allsets"}>
-                            <Button className={classes.homeButton} variant="contained" color="primary" >
-                                All Sets
-                    </Button>
-                        </Link>
 
                         <Button
                             className={classes.homeButton}
                             onClick={() => goToRandom()}
                             variant="contained" color="primary" >
                             Random Card
-                </Button>
+                        </Button>
 
                     </div>
 

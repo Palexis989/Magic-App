@@ -134,14 +134,19 @@ export default function CardSearch() {
                                             All Sets
                                         </Button>
                                     </Link>
-                                    <Link to={`/details/${randomForButton}`}>
+                                    <Link to={"/deckbuilder"}>
+                                        <Button className={classes.dropButton} variant="contained" color="primary" >
+                                            Deck Builder
+                                        </Button>
+                                    </Link>
+                                    {/* <Link to={`/details/${randomForButton}`}>
                                         <Button
                                             className={classes.dropButton}
                                             onClick={() => getRandomForButton()}
                                             variant="contained" color="primary" >
                                             Random Card
                                         </Button>
-                                    </Link>
+                                    </Link> */}
                                 </div>
                             ) : null}
                         </div>

@@ -49,7 +49,6 @@ export default function Sets() {
             const res = await getCardsFromSet(expansionCards?.next_page);
             let object1 = expansionCards
             let object2 = res.data
-            // console.log("ressdcdjn", expansionCards)
 
             function customizer(objValue, srcValue) {
                 if (_.isArray(objValue)) {
@@ -58,17 +57,9 @@ export default function Sets() {
             }
 
             let merge = _.mergeWith(object1, object2, customizer);
-            // console.log("asdhihcvdrfiaseirfvruirhuiaerhiv", object2)
-            console.log("asdhihcvdrfiaseirfvruirhuiaerhiv", merge)
             setExpansionCards(null)
             setExpansionCards(merge);
 
-            // let slice1 = []
-            // let slice2 = res.data
-            // slice2.map((iterator => {
-            //     slice1.push(iterator)
-            // }))
-            // setInitialCards(slice1)
             console.log(expansionCards.has_more)
             setTrigger(false)
         }
@@ -88,13 +79,13 @@ export default function Sets() {
                     <CircularProgress size={150} />
                 </div>) :
                 (<InfiniteScroll
-                    dataLength={expansionCards && expansionCards.total_cards} 
+                    dataLength={expansionCards && expansionCards.total_cards}
                     next={pullTrigger}
                     hasMore={expansionCards && expansionCards.has_more}
                     loader={<h4>Loading...</h4>}
                     endMessage={
                         <p style={{ textAlign: 'center' }}>
-                            <b>Yay! You have seen it all</b>
+                            <b style={{ color: "white" }} >Yay! You have seen it all.</b>
                         </p>
                     }
                 >

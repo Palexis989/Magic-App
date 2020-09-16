@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
-// import Image from '../../images/minimal-blur.jpg';
+
 
 export const useStyles = makeStyles({
 
@@ -7,11 +7,7 @@ export const useStyles = makeStyles({
     //     backgroundColor: "#4080bf"
     // },
 
-    tableWrapper: {
-        backgroundColor: "4080bf",
-        height: "100px",
-        width: "100px"
-    },
+    
 
     printsLink: {
         textDecoration: "none",
